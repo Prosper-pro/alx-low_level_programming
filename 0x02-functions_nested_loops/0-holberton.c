@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "stdio.h"
 /**
  * main - Print "Holberton" followed by a new line.
  * Description: You are not allowed to include standard libraries.
@@ -11,10 +11,10 @@ int main(void)
 
 	while (holberton[i] != '\0')
 	{
-		_putchar(holberton[i]);
+		putchar(holberton[i]);
 		i++;
 	}
-	_putchar('\n');
+	putchar('\n');
 
 	return (0);
 }
