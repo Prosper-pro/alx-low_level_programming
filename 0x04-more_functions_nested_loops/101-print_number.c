@@ -1,14 +1,17 @@
 #include "holberton.h"
-
+#include <stdio.h>
 /**
- * print_number - print an integer, without using long, arrays, or pointers
- * @n: number to be printed
- */
-
+* print_number - Entry point
+* @n: number
+* Return: Always 0 (Success)
+*/
 void print_number(int n)
 {
-	unsigned int tens, digit, positive = n;
-	double t_beg = 1;
+	int length = 10;
+	int number = n;
+
+	if (n < 0)
+		number = (-n);
 
 	if (n == 0)
 		_putchar('0');
@@ -16,20 +19,16 @@ void print_number(int n)
 	{
 		if (n < 0)
 		{
-			positive = n * -1;
 			_putchar('-');
+			n = (-n);
 		}
-
-		while (t_beg <= positive)
-			t_beg *= 10;
-		tens = t_beg / 10;
-
-		while (tens >= 1)
+		for (; n > 0; n /= 100)
+			length *= 10;
+		for (n = length; n > 0; n /= 10)
 		{
-			digit = positive / tens;
-			_putchar(digit + '0');
-			positive = (positive - (tens * digit));
-			tens /= 10;
+			if (!(n == length && ((number / n) % 10) == 0))
+				_putchar('0' + (number / n) % 10);
 		}
 	}
+
 }
