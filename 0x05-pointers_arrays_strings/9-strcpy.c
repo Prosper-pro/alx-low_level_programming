@@ -1,52 +1,24 @@
+#include<stdio.h>
 #include "holberton.h"
-
 /**
- * _strlen - returns the length of a string
- * @s: string
- * Return: length
+ *_strcpy - update value.
+ *@dest: value to be evaluate.
+ *@src: value to be evaluate.
+ *Return: not.
  */
-
-int _strlen(char *s)
-{
-	int len = 0;
-
-	while (*s != '\0')
-	{
-		len++;
-		s++;
-	}
-
-	return (len);
-}
-
-/**
- * _strcpy - copies the string pointed to by src,
- * including the terminating null byte (\0),
- * to the buffer pointed to by dest
- * @dest: copy source to this buffer
- * @src: this is the source to copy
- * Return: copy of original source
- */
-
 char *_strcpy(char *dest, char *src)
 {
-	int i;
+	int l = 0;
+	int x = 0;
 
-	for (i = 0; i <= _strlen(src); i++)
-		dest[i] = src[i];
-
-	return (dest);
-}
-
-/* another method using pointer notation
-char *_strcpy(char *dest, char *src)
-{
-        while (*src)
+	while (*(src + l) != '\0')
 	{
- 	   *dest = *src;
-	   src++;
-	   dest++;
+		l++;
 	}
+	for ( ; x < l ; x++)
+	{
+		dest[x] = src[x];
+	}
+	dest[l] = '\0';
 	return (dest);
 }
-*/
