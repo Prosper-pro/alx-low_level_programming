@@ -1,42 +1,45 @@
 #include "holberton.h"
 #include <stdlib.h>
+
 /**
- * *argstostr - concatenates all arguements to the program
- * @ac: arguement count
- * @av: pointer to arguements
- * Return: pointer to new space in memory or null
- **/
+ * argstostr - Concatenates all arguments of the program into a string;
+ *             arguments are separated by a new line in the string.
+ * @ac: The number of arguments passed to the program.
+ * @av: An array of pointers to the arguments.
+ *
+ * Return: If ac == 0, av == NULL, or the function fails - NULL.
+ *         Otherwise - a pointer to the new string.
+ */
 char *argstostr(int ac, char **av)
 {
-	char *strDup;
-	int i, j, k, size;
+  char *str;
+  int arg, byte, index, size = ac;
 
-	if (ac == 0 || av == NULL)
-		return (NULL);
-	size = 0;
-/* count the number of chars in each string */
-	for (i = 0; i < ac; i++)
-	{
-		for (j = 0; av[i][j] != '\0'; j++)
-			size++;
-		size++;
-	}
+  if (ac == 0 || av == NULL)
+    return (NULL);
+
+  for (arg = 0; arg < ac; arg++)
+    {
+      for (byte = 0; av[arg][byte]; byte++)
 	size++;
-/* allocate memory for total number of chars and
- * new line for each word
- */
-	strDup = malloc(sizeof(char) * size);
-	if (strDup == NULL)
-		return (NULL);
-	k = 0;
-	for (i = 0; i < ac; i++)
-	{
-		for (j = 0; av[i][j] != '\0'; j++)
-		{
-			strDup[k++] = av[i][j];
-		}
-		strDup[k++] = '\n';
-	}
-	strDup[k] = '\0';
-	return (strDup);
+    }
+
+  str = malloc(sizeof(char) * size + 1);
+
+  if (str == NULL)
+    return (NULL);
+
+  index = 0;
+
+  for (arg = 0; arg < ac; arg++)
+    {
+      for (byte = 0; av[arg][byte]; byte++)
+	str[index++] = av[arg][byte];
+
+      str[index++] = '\n';
+    }
+
+  str[size] = '\0';
+
+  return (str);
 }
