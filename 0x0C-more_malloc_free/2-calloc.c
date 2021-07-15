@@ -1,29 +1,31 @@
-#include <stdlib.h>
 #include "holberton.h"
+#include <stdlib.h>
 
 /**
- * _calloc - allocate memory and set all values to 0
- * @nmemb: size
- * @size: sizeof(datatype)
- * Return: pointer to calloc'd string
+ * _calloc - allocates memory for an array, using malloc
+ * @nmemb: array
+ * @size: memory size
+ * Return: If nmemb = 0, size = 0, or the function fails - NULL
+ * Otherwise - a pointer to the allocated memory
  */
-
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	void *ptr;
-	unsigned int i; /* match unsigned arguments */
+	void *x;
+	char *f;
+	unsigned int i;
 
-	if (nmemb <= 0 || size <= 0) /* validate input */
+	if (nmemb == 0 || size == 0)
 		return (NULL);
 
-	/* allocate memory and check if error */
-	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
+	x = malloc(size * nmemb);
+
+	if (x == NULL)
 		return (NULL);
 
-	/* set allocated memory values to 0 */
-	for (i = 0; i < nmemb * size; i++)
-		*((char *)ptr + i) = 0; /* type cast assigning values*/
+	f = x;
 
-	return (ptr);
+	for (i = 0; i < (size * nmemb); i++)
+		f[i] = '\0';
+
+	return (x);
 }
